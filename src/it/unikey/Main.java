@@ -4,7 +4,9 @@ public class Main {
 
     public static void main(String[] args) {
 	// Prima prova sui push
-        int b = 7;
+
+        int b = 77;
+
         System.out.println(b);
     }
 }
