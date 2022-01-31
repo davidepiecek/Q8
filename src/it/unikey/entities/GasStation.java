@@ -1,5 +1,8 @@
 package it.unikey.entities;
 
 public class GasStation {
-    //TODO
+    private double petrolDeposit;
+    private double dieselDeposit;
+    private double dieselPricePerLitre;
+    private double petrolPricePerLitre;
 }
