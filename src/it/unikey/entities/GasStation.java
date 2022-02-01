@@ -15,11 +15,12 @@ public class GasStation
         this.petrolPricePerLitre = petrolPricePerLitre;
     }
 
-
     public GasStation ()
     {
 
     }
+
+
 
     public void refuelPetrolDeposit (double litre)
     {
@@ -30,16 +31,29 @@ public class GasStation
         dieselDeposit += litre;
     }
 
-    public static void sellPetrol (double paidAmmountForPetrol)
+    public String sellPetrol (double paidAmmountForPetrol)
     {
-        do {
+        double litreSelled = paidAmmountForPetrol / petrolPricePerLitre;
 
-        }while ()
+
+        if (petrolDeposit - litreSelled >= 0)
+        {
+            this.petrolDeposit -= litreSelled;
+            return "Ho venduto" + litreSelled + "litri di benzina";
+        }
+        return"scorte insufficienti";
     }
 
-    public static void sellDiesel (double paidAmmountForDiesel)
+    public boolean sellDiesel (double paidAmmountForDiesel)
     {
+        double litreSelled = paidAmmountForDiesel / dieselPricePerLitre;
 
+        if (dieselDeposit - litreSelled >= 0)
+        {
+            this.dieselDeposit -= litreSelled;
+            return true;
+        }
+        return false;
     }
 
 }

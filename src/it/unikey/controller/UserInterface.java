@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class UserInterface {
 
     Scanner scanner1 = new Scanner(System.in);
+    GasStation gasStation = new GasStation(0,00);
 
     public void userInterface ()
     {
@@ -19,12 +20,12 @@ public class UserInterface {
             case "diesel":
                 System.out.println("inserisci l'importo che desideri pagare ");
                 int paidAmmoutForDiesel = scanner1.nextInt();
-                GasStation.sellDiesel(paidAmmoutForDiesel);
+                gasStation.sellDiesel(paidAmmoutForDiesel);
 
             case "petrol":
                 System.out.println("inserisci l'importo che desideri pagare ");
                 int paidAmmountForPetrol = scanner1.nextInt();
-                GasStation.sellPetrol(paidAmmountForPetrol);
+                gasStation.sellPetrol(paidAmmountForPetrol);
 
             default:
                 System.out.println("inserisci una opzione valida ");
