@@ -4,11 +4,13 @@ public class Car
 {
     private String model;
     private String fuellType;
+    private double reservoir;
     private double reservoirCapacity;
 
-    public Car(String model, String fuellType) {
+    public Car(String model, String fuellType, double reservoirCapacity) {
         this.model = model;
         this.fuellType = fuellType;
+        this.reservoirCapacity = reservoirCapacity;
     }
 
     public String getModel() {
@@ -33,5 +35,13 @@ public class Car
 
     public void setReservoirCapacity(double reservoirCapacity) {
         this.reservoirCapacity = reservoirCapacity;
+    }
+
+    public double getReservoir() {
+        return reservoir;
+    }
+
+    public void setReservoir(double reservoir) {
+        this.reservoir = reservoir;
     }
 }

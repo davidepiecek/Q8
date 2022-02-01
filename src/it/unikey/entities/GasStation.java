@@ -85,17 +85,58 @@ public class GasStation
         return true;
     }
 
+    /**
+     * il metodo vende benzina. La rimuove dal deposito e la aggiunge alla macchina ricevuta come parametro
+     * @param car una macchina da rifornire
+     * @param paidAmount i soldi che inserisci al distributore
+     * @return false se non c'è benzina nel deposito o se la macchina ha già il pieno, altrimenti true. ritorna falso anche se
+     * la macchina non è ne a benzina ne a diesel
+     */
     public boolean sellFuell(Car car, double paidAmount)
     {
         switch(car.getFuellType().toUpperCase())
         {
             case "DIESEL" :
                 double dieselAmount = paidAmount / dieselPricePerLitre;
-                if(dieselDeposit > 0)
-                    
-                break;
+                double toFull = car.getReservoirCapacity() - car.getReservoir(); //La differenza per arrivare al pieno della macchina
+
+                if(dieselDeposit == 0)
+                    return false;
+                if(car.getReservoir() == car.getReservoirCapacity())
+                    return false;
+                if(toFull < dieselAmount)
+                {
+                    this.dieselDeposit -= toFull;
+                    car.setReservoir(car.getReservoirCapacity());
+                    return true;
+                }
+                if(toFull >= dieselAmount)
+                {
+                    this.dieselDeposit -= dieselAmount;
+                    car.setReservoir(dieselAmount);
+                    return true;
+                }
             case "PETROL" :
-                break;
+                double petrolAmount = paidAmount / petrolPricePerLitre;
+                double toFull1 = car.getReservoirCapacity() - car.getReservoir(); //La differenza per arrivare al pieno della macchina
+
+                if(petrolDeposit == 0)
+                    return false;
+                if(car.getReservoir() == car.getReservoirCapacity())
+                    return false;
+                if(toFull1 < petrolAmount)
+                {
+                    this.petrolDeposit -= toFull1;
+                    car.setReservoir(car.getReservoirCapacity());
+                    return true;
+                }
+                if(toFull1 >= petrolAmount)
+                {
+                    this.petrolDeposit -= petrolAmount;
+                    car.setReservoir(petrolAmount);
+                    return true;
+                }
+                return false;
             default :
                 return false;
         }
