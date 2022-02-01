@@ -2,10 +2,13 @@ package it.unikey.entities;
 
 public class GasStation
 {
+    private final static double MAXCAPACITYPETROL = 1000.00;
+    private final static double MAXCAPACITYDIESEL = 1000.00;
+
     private double petrolDeposit;
     private double dieselDeposit;
-    private double dieselPricePerLitre = 1.4;
-    private double petrolPricePerLitre = 1.75;
+    private double dieselPricePerLitre;
+    private double petrolPricePerLitre;
 
     public GasStation (double dieselPricePerLitre, double petrolPricePerLitre)
     {
@@ -15,45 +18,89 @@ public class GasStation
         this.petrolPricePerLitre = petrolPricePerLitre;
     }
 
-    public GasStation ()
+    public GasStation () {}
+
+
+    /**
+     * Il metodo serve per rifornire il deposito di benzina.
+     * @param litre La quantitò di benzina da aggiungere al distriubutore
+     * @return La quantità di benzina in eccesso che siupeerrerebbe la capienza massima del deposito
+     */
+    public double refuelPetrolDeposit (double litre)
     {
-
-    }
-
-
-
-    public void refuelPetrolDeposit (double litre)
-    {
-        petrolDeposit += litre;
-    }
-    public void refuelDieselDeposit ( double litre)
-    {
-        dieselDeposit += litre;
-    }
-
-    public String sellPetrol (double paidAmmountForPetrol)
-    {
-        double litreSelled = paidAmmountForPetrol / petrolPricePerLitre;
-
-
-        if (petrolDeposit - litreSelled >= 0)
+        if(litre + petrolDeposit <= MAXCAPACITYPETROL)
         {
-            this.petrolDeposit -= litreSelled;
-            return "Ho venduto" + litreSelled + "litri di benzina";
+            petrolDeposit += litre;
+            return 0;
         }
-        return"scorte insufficienti";
-    }
-
-    public boolean sellDiesel (double paidAmmountForDiesel)
-    {
-        double litreSelled = paidAmmountForDiesel / dieselPricePerLitre;
-
-        if (dieselDeposit - litreSelled >= 0)
+        else
         {
-            this.dieselDeposit -= litreSelled;
-            return true;
+            petrolDeposit = MAXCAPACITYPETROL;
+            return litre - (MAXCAPACITYPETROL - petrolDeposit);
         }
-        return false;
     }
+
+    /**
+     * Il metodo serve per rifornire il deposito di diesel:
+     * @param litre La quantità...
+     * @return Diesel in eccesso...
+     */
+    public double refuelDieselDeposit (double litre)
+    {
+        if(litre + dieselDeposit <= MAXCAPACITYDIESEL)
+        {
+            dieselDeposit += litre;
+            return 0;
+        }
+        else
+        {
+            dieselDeposit = MAXCAPACITYDIESEL;
+            return litre - (MAXCAPACITYDIESEL - dieselDeposit);
+        }
+    }
+
+    /**
+     * Aggiorna il prezzo della benzina
+     * @param newPrice il nuovo prezzo da adottare
+     * @return true se il prezzo inserito ha senso, quindi se è maggiore di zero, altrimenti false
+     */
+    public boolean updatePetrolPrice(double newPrice)
+    {
+        if(newPrice <= 0)
+            return false;
+        this.petrolPricePerLitre = newPrice;
+        return true;
+    }
+
+    /**
+     * Aggiorna il prezzo del diesel
+     * @param newPrice il nuovo prezzo da adottare
+     * @return true se il prezzo inserito ha senso, quindi se è maggiore di zero, altrimenti false
+     */
+    public boolean updateDieselPrice(double newPrice)
+    {
+        if(newPrice <= 0)
+            return false;
+        this.dieselPricePerLitre = newPrice;
+        return true;
+    }
+
+    public boolean sellFuell(Car car, double paidAmount)
+    {
+        switch(car.getFuellType().toUpperCase())
+        {
+            case "DIESEL" :
+                double dieselAmount = paidAmount / dieselPricePerLitre;
+                if(dieselDeposit > 0)
+                    
+                break;
+            case "PETROL" :
+                break;
+            default :
+                return false;
+        }
+    }
+
+
 
 }

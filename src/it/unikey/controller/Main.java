@@ -12,6 +12,7 @@ public class Main {
        
         String a = "ciao";
          GasStation d  = new GasStation(1.40,1.70);
+         d.refuelPetrolDeposit(50.00);
     }
 
 }
