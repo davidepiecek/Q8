@@ -6,21 +6,11 @@ import it.unikey.entities.GasStation;
 public class Main {
 
     public static void main(String[] args) {
-	// Prima prova sui push
-
-
-
-       
-       // String a = "ciao";
-         GasStation d  = new GasStation(1.40,1.70);
-       //  d.refuelPetrolDeposit(50.00);
-         Car c = new Car("fiat", "diesel", 50);
-
-         d.refuelDieselDeposit(800);
-
-         d.sellFuell(c, 90);
-
-        System.out.println(c.getReservoir());
+        GasStation mioBenzinaio = new GasStation(1.45, 1.75);
+        Car panda = new Car("Panda", "Metano", 40);
+        Car bravo = new Car("Bravo", "Benzina", 60);
+        Car peugeot = new Car("208", "Diesel", 78);
+        UserInterface.openMenu();
     }
 
 }
