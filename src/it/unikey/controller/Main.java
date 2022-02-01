@@ -10,7 +10,8 @@ public class Main {
         Car panda = new Car("Panda", "Metano", 40);
         Car bravo = new Car("Bravo", "Benzina", 60);
         Car peugeot = new Car("208", "Diesel", 78);
-        UserInterface.openMenu();
+        UserInterface.openMenu(mioBenzinaio, panda, bravo, peugeot);
+        System.out.println(mioBenzinaio.getDieselDeposit());
     }
 
 }

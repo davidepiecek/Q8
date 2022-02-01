@@ -85,6 +85,38 @@ public class GasStation
         return true;
     }
 
+    public double getPetrolDeposit() {
+        return petrolDeposit;
+    }
+
+    public void setPetrolDeposit(double petrolDeposit) {
+        this.petrolDeposit = petrolDeposit;
+    }
+
+    public double getDieselDeposit() {
+        return dieselDeposit;
+    }
+
+    public void setDieselDeposit(double dieselDeposit) {
+        this.dieselDeposit = dieselDeposit;
+    }
+
+    public double getDieselPricePerLitre() {
+        return dieselPricePerLitre;
+    }
+
+    public void setDieselPricePerLitre(double dieselPricePerLitre) {
+        this.dieselPricePerLitre = dieselPricePerLitre;
+    }
+
+    public double getPetrolPricePerLitre() {
+        return petrolPricePerLitre;
+    }
+
+    public void setPetrolPricePerLitre(double petrolPricePerLitre) {
+        this.petrolPricePerLitre = petrolPricePerLitre;
+    }
+
     /**
      * il metodo vende benzina. La rimuove dal deposito e la aggiunge alla macchina ricevuta come parametro
      * @param car una macchina da rifornire
@@ -140,6 +172,7 @@ public class GasStation
             default :
                 return false;
         }
+
     }
 
 
